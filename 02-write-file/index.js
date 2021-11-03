@@ -8,24 +8,23 @@ const rl = readline.createInterface({ input, output });
 
 let writeableStream = fs.createWriteStream(filePath);
 
+console.log("Введите сообщение")
+rl.prompt();
 
-function print() {
-    rl.question('Enter the message? ', (answer) => {
-        if (answer === 'exit') {
-            rl.close();
-            writeableStream.end();
-            output.write(`До свидания! \n`);
-        } else {
-            writeableStream.write(answer);
-            print()
-        }
-    
-      });
-    
-    process.on("SIGINT", function () {
-        console.log("До свидания, заходите ещё");
+rl.on('line', (line) => {
+    line = line.trim();
+    if (line !== 'exit') {
+        writeableStream.write(`${line}\n`);
+        console.log('Готово!');
+        rl.prompt();
+    } else {
+        console.log('До встречи!');
         process.exit();
-    });
-}
+    }
+  }).on('close', () => {
+    console.log('До встречи!');
+    process.exit();
+  });
 
-print()
+
+
