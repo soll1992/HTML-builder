@@ -1,14 +1,15 @@
 const fs = require('fs');
 const path = require("path");
 const readline = require('readline');
-const { stdin: input, stdout: output } = require('process');
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+  });
 const filePath = path.join(__dirname, 'text.txt');
-
-const rl = readline.createInterface({ input, output });
 
 let writeableStream = fs.createWriteStream(filePath);
 
-console.log("Введите сообщение")
+rl.setPrompt("Введите сообщение: ")
 rl.prompt();
 
 rl.on('line', (line) => {
