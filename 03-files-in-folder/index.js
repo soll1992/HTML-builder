@@ -4,8 +4,6 @@ const path = require("path");
 
 const filePath = path.join(__dirname, 'secret-folder');
 
-const arr = []
-
 
 fs.readdir(filePath, {withFileTypes:true}, function(err, items) {
     for (const item of items) {
