@@ -6,8 +6,8 @@ const pathToMain = path.join(__dirname, "files")
 const pathToCopy = path.join(__dirname, "files-copy")
 
 async function copyFileDir (mainDir,copyDir) {
-  await promis.rm(pathToCopy, { recursive: true, force: true });
-  await promis.mkdir(pathToCopy, { recursive: true });
+  await promis.rm(copyDir, { recursive: true, force: true });
+  await promis.mkdir(copyDir, { recursive: true });
 
   fs.readdir(mainDir, {withFileTypes: true}, function(err, items) {
   if (err) throw err;
