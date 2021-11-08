@@ -19,6 +19,7 @@ function assetsCopy(assets,copyAssets) {
         if (err) throw err;
     });
     fs.readdir(assets, {withFileTypes: true}, (err, files) => {
+        if (err) throw err;
         files.forEach((file) => {
           const srcPath = path.join(assets, file.name);
           const distPath = path.join(copyAssets, file.name);
